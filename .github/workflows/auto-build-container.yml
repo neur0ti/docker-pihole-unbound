@@ -7,7 +7,7 @@ on:
       - 'main'
   schedule:
   # cron job to trigger the build daily
-    - cron:  '0 0 * * 5'
+    - cron:  '0 3 * * 5'
 
 permissions:
   contents: write
