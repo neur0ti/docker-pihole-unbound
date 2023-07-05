@@ -64,8 +64,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ steps.latest_release.outputs.dev_release }}
-        name: "${{ steps.latest_release.outputs.dev_release }}"
+        tag_name: ${{ steps.dev_release.outputs.dev_release }}
+        name: "${{ steps.dev_release.outputs.dev_release }}"
         body: |
           NOTE: THIS IS A DEV REALSE - USE AT YOUR OWN RISK - NO SUPPORT WILL BE PROVIDED
           FOR TESTING ONLY
