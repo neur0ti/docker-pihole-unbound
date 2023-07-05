@@ -57,7 +57,7 @@ jobs:
 
     - name: Dev release
       id: dev_release
-      run: echo ::set-output name=release::testing-${{ steps.date.outputs.date }}
+      run: echo ::set-output name=dev_release::testing-${{ steps.date.outputs.date }}
 
     - name: Create release
       uses: softprops/action-gh-release@v1
