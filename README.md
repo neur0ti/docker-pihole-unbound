@@ -8,6 +8,11 @@
   - This configuration contacts the DNS root servers directly, please read the Pi-Hole docs on [Pi-hole as All-Around DNS Solution](https://docs.pi-hole.net/guides/unbound/) to understand what this means.
   - With this approach, we can also simplify our Docker networking since `macvlan` is no longer necessary.
 
+## Updates
+
+This image is regularly update with the latest release from the official pi-hole image.
+I automatically run a check every friday to update the base image if there has been a release. If there is no new relase, then I do not release any new images either.
+
 ## Description
 
 This Docker deployment runs both Pi-Hole and Unbound in a single container.
