@@ -10,6 +10,7 @@ on:
   # cron job to trigger the build daily
   # at 3am on Friday
     - cron:  '0 3 * * 5'
+  workflow_dispatch:
 
 permissions:
   contents: write
