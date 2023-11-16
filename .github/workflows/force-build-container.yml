@@ -31,6 +31,10 @@ jobs:
         type: "stable"
       run: echo release=$(curl --silent "https://api.github.com/repos/aleksanderbl29/docker-pihole-unbound/releases/latest" | jq -r '.tag_name' ) >> $GITHUB_OUTPUT
 
+    - name: Get todays date
+      id: date
+      run: echo date=$(date +%Y-%m-%d) >> $GITHUB_OUTPUT
+
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
 
@@ -50,15 +54,15 @@ jobs:
         context: "{{defaultContext}}:pihole-unbound/"
         platforms: linux/arm/v7,linux/arm64/v8,linux/amd64
         push: true
-        tags: aleksanderbl/pihole-unbound:latest,aleksanderbl/pihole-unbound:${{ steps.latest_release.outputs.release }}
+        tags: aleksanderbl/pihole-unbound:latest,aleksanderbl/pihole-unbound:${{ steps.latest_release.outputs.release }},aleksanderbl/pihole-unbound:${{ steps.latest_release.outputs.release }}-force-${{steps.date.outputs.date}}
 
     - name: Create release
       uses: softprops/action-gh-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ steps.latest_release.outputs.release }}
-        name: "${{ steps.latest_release.outputs.release }}"
+        tag_name: "${{ steps.latest_release.outputs.release }}-force-${{steps.date.outputs.date}}"
+        name: "Forced build of ${{ steps.latest_release.outputs.release }}"
         body: |
           This release was force built by @aleksanderbl29
 
